@@ -1,0 +1,27 @@
+allowed_domains:
+- conga
+- cpq
+- api
+- troubleshooting
+- authentication
+- configuration
+- pricing
+- quotes
+blocked_categories:
+- personal_information
+- financial_details
+- credentials
+- malicious_code
+- inappropriate_content
+content_filters:
+  code_injection: true
+  personal_data: true
+  profanity: true
+  prompt_injection: true
+enabled: true
+max_input_length: 2000
+rate_limiting:
+  enabled: true
+  max_requests_per_hour: 1000
+  max_requests_per_minute: 60
+strict_mode: false

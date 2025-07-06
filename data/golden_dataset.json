@@ -1,0 +1,84 @@
+[
+  {
+    "query": "How do I fix 401 authentication errors?",
+    "expected_response": "For 401 authentication errors, check these steps: 1. Verify your bearer token is not expired, 2. Ensure the token format is correct: 'Bearer <token>', 3. Check that the token has required scopes, 4. If issues persist, regenerate your token",
+    "category": "authentication",
+    "difficulty": "easy",
+    "context_keywords": [
+      "401",
+      "authentication",
+      "bearer token",
+      "unauthorized"
+    ],
+    "metadata": null
+  },
+  {
+    "query": "What's the payload structure for creating a quote?",
+    "expected_response": "To create a quote using the Quote Management API, use the POST /api/v1/quotes endpoint with this payload structure: accountId (required), opportunityId (required), and products array with productId, quantity, and listPrice",
+    "category": "api_usage",
+    "difficulty": "medium",
+    "context_keywords": [
+      "quote",
+      "payload",
+      "POST",
+      "api",
+      "structure"
+    ],
+    "metadata": null
+  },
+  {
+    "query": "How to handle rate limiting in API calls?",
+    "expected_response": "For 429 Rate Limit Exceeded errors: 1. Implement exponential backoff in retry logic, 2. Reduce request frequency, 3. Consider caching responses, 4. Contact support for higher rate limits if needed",
+    "category": "troubleshooting",
+    "difficulty": "medium",
+    "context_keywords": [
+      "rate limit",
+      "429",
+      "backoff",
+      "retry",
+      "frequency"
+    ],
+    "metadata": null
+  },
+  {
+    "query": "What headers are required for the pricing API?",
+    "expected_response": "The Pricing Engine API (POST /api/v1/pricing/calculate) requires these headers: Authorization: Bearer <token> and Content-Type: application/json",
+    "category": "api_usage",
+    "difficulty": "easy",
+    "context_keywords": [
+      "headers",
+      "pricing",
+      "authorization",
+      "content-type"
+    ],
+    "metadata": null
+  },
+  {
+    "query": "How do I troubleshoot 500 internal server errors?",
+    "expected_response": "For 500 Internal Server Error: 1. Retry request after delay, 2. Check API status page, 3. Contact technical support, 4. Check if it's a temporary server issue",
+    "category": "troubleshooting",
+    "difficulty": "hard",
+    "context_keywords": [
+      "500",
+      "internal server error",
+      "retry",
+      "status",
+      "support"
+    ],
+    "metadata": null
+  },
+  {
+    "query": "What's the difference between 404 and 403 errors?",
+    "expected_response": "404 Not Found means the resource doesn't exist or can't be found. 403 Forbidden means the resource exists but you don't have permission to access it. Check resource ID for 404, check permissions for 403.",
+    "category": "troubleshooting",
+    "difficulty": "medium",
+    "context_keywords": [
+      "404",
+      "403",
+      "not found",
+      "forbidden",
+      "permissions"
+    ],
+    "metadata": null
+  }
+]
