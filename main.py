@@ -3,6 +3,7 @@ Troubleshooting Chatbot API
 Main FastAPI application with Azure OpenAI integration
 """
 
+from datetime import datetime
 import os
 import logging
 from fastapi import FastAPI, HTTPException, Depends, status
@@ -21,6 +22,8 @@ from services.gaurdrails_service import GuardrailsService
 from models.chat_models import ChatRequest, ChatResponse, DocumentUploadRequest
 from models.evalution_models import EvaluationMetrics, EvaluationRequest
 from config.settings import Settings
+import importlib
+from dotenv import load_dotenv
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -223,6 +226,48 @@ async def delete_conversation(conversation_id: str):
     except Exception as e:
         logger.error(f"Error deleting conversation: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
+    
+@app.post("/api/admin/reload-config")
+async def reload_config():
+    """Reload configuration and environment variables"""
+    try:
+        # Force reload environment variables
+        load_dotenv(override=True)
+        
+        # Reload settings module
+        import config.settings
+        importlib.reload(config.settings)
+        
+        # Reload services
+        import services.chat_service
+        import services.document_service
+        importlib.reload(services.chat_service)
+        importlib.reload(services.document_service)
+        
+        # Re-initialize services with new settings
+        app.state.chat_service = ChatService()
+        app.state.document_service = DocumentService()
+        
+        return {
+            "message": "Configuration reloaded successfully",
+            "timestamp": datetime.utcnow().isoformat(),
+            "api_version": os.getenv("AZURE_OPENAI_API_VERSION")
+        }
+    except Exception as e:
+        logger.error(f"Error reloading configuration: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/api/admin/config-status")
+async def get_config_status():
+    """Get current configuration status"""
+    return {
+        "azure_openai_api_version": os.getenv("AZURE_OPENAI_API_VERSION"),
+        "azure_openai_endpoint": os.getenv("AZURE_OPENAI_ENDPOINT"),
+        "azure_openai_deployment_name": os.getenv("AZURE_OPENAI_DEPLOYMENT_NAME"),
+        "env_file_exists": os.path.exists(".env"),
+        "timestamp": datetime.utcnow().isoformat()
+    }
 
 
 if __name__ == "__main__":

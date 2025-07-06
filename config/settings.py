@@ -14,7 +14,7 @@ class Settings(BaseSettings):
     # Azure OpenAI Configuration (only for chat, not embeddings)
     azure_openai_endpoint: str = Field(..., env="AZURE_OPENAI_ENDPOINT")
     azure_openai_api_key: str = Field(..., env="AZURE_OPENAI_API_KEY")
-    azure_openai_api_version: str = Field(default="2024-02-01", env="AZURE_OPENAI_API_VERSION")
+    azure_openai_api_version: str = Field("2025-01-01-preview", env="AZURE_OPENAI_API_VERSION")
     azure_openai_deployment_name: str = Field(..., env="AZURE_OPENAI_DEPLOYMENT_NAME")
     
     # Embedding Configuration - Using local SentenceTransformer
