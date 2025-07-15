@@ -1,0 +1,79 @@
+# ============================================================================
+# FIXED REQUIREMENTS FOR MEDICAL Q&A API
+# ============================================================================
+# Updated to fix compatibility issues
+
+# FastAPI and Web Framework
+fastapi
+uvicorn[standard]
+python-multipart
+pydantic
+pydantic-settings
+python-jose[cryptography]
+passlib[bcrypt]
+
+# Database (SQLite - default, no additional dependencies needed)
+SQLAlchemy
+alembic
+aiosqlite
+
+# Data Processing (use pre-compiled wheels)
+numpy
+pandas
+
+# PyTorch and ML Core 
+transformers
+scikit-learn
+
+# FIXED: Compatible sentence-transformers and huggingface-hub versions
+sentence-transformers>=2.2.0,<3.0.0
+huggingface-hub>=0.16.0,<0.18.0
+
+# LangChain - UPDATED imports for compatibility
+langchain>=0.1.0,<0.3.0
+langchain-openai>=0.0.5
+langchain-community>=0.0.10
+
+# OpenAI (supports both OpenAI and Azure OpenAI)
+openai
+
+# Vector Databases
+chromadb
+faiss-cpu
+
+# Hugging Face and Datasets
+datasets
+
+# Environment and Configuration
+python-dotenv
+
+# HTTP and Networking
+httpx
+requests
+
+# Testing
+pytest
+pytest-asyncio
+
+# Utilities
+click
+
+# Security
+cryptography
+
+# ============================================================================
+# INSTALLATION INSTRUCTIONS - UPDATED
+# ============================================================================
+# 
+# STEP 1: Uninstall conflicting packages
+# pip uninstall sentence-transformers huggingface-hub langchain langchain-openai langchain-community
+# 
+# STEP 2: Install compatible versions
+# pip install huggingface-hub==0.17.3
+# pip install sentence-transformers==2.2.2
+# pip install langchain==0.1.20
+# pip install langchain-openai==0.1.8
+# pip install langchain-community==0.0.38
+# 
+# STEP 3: Install remaining packages
+# pip install -r requirements.txt
